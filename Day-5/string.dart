@@ -60,4 +60,8 @@ void main() {
   String text = "hello world";
   print(
       "Capitalized first letter of String: ${text[0].toUpperCase()}${text.substring(1)}");
+
+  String country = "India,Australia,Pakisthan";
+  print(country.contains('India'));
+  print(country.indexOf('India'));
 }
