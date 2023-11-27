@@ -1,8 +1,7 @@
-void main(){
-
+void main() {
   //Creating a List
 
-  List<int>num = [1,2,3,4];
+  List<int> num = [1, 2, 3, 4];
   print(num);
 
   //Accessing Elements
@@ -25,7 +24,7 @@ void main(){
   print(num);
 
   //List Methods
-  List<int>value =[9,4,3,5,6];
+  List<int> value = [9, 4, 3, 5, 6];
   value.sort();
   print(value);
 }
