@@ -81,10 +81,10 @@ void main() {
 
   //Condition in List
   bool sad = false;
-  var cart = ['milk', 'ghee', if (sad) 'Beer'];
+  var cart = ['milk', 'ghee', if (sad) 'Water'];
   print(cart);
   bool happy = true;
-  var cart2 = ['milk', 'ghee', if (happy) 'Beer'];
+  var cart2 = ['milk', 'ghee', if (happy) 'Water'];
   print(cart2);
 
   //Where In List Dart
