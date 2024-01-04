@@ -90,7 +90,6 @@ class _LocationBasedWeatherState extends State<LocationBasedWeather> {
     currentMonth = DateFormat('MMMM').format(now);
   }
 
-
   Future<void> fetchDailyWeather(double latitude, double longitude) async {
     try {
       const apiKey = '25ec1c422578d5b2f5aef5a7abd7fc2f';
@@ -226,16 +225,10 @@ class _LocationBasedWeatherState extends State<LocationBasedWeather> {
                       children: [
                         Row(
                           children: [
-                            // Icon(
-
-                            //   color: Colors.white,
-                            //   size: 30,
-                            // ),
                             Image.network(
                               'https://openweathermap.org/img/w/$iconCode.png',
                               scale: 1.0,
                             ),
-
                             const SizedBox(width: 10),
                             Text(
                               weatherDescription,
@@ -338,8 +331,9 @@ class _LocationBasedWeatherState extends State<LocationBasedWeather> {
                                             Text(
                                               DateFormat('h:mm a').format(
                                                   DateTime.parse(data['date'])),
-                                              style:
-                                                  const TextStyle(fontSize: 12),
+                                              style: const TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.white),
                                             ),
                                             const SizedBox(height: 8),
                                             Image.network(
@@ -388,7 +382,7 @@ class _LocationBasedWeatherState extends State<LocationBasedWeather> {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              height: 40.0,
+              height: 60.0,
               width: 200.0,
               child: TextField(
                 controller: searchController,
@@ -426,13 +420,22 @@ class _LocationBasedWeatherState extends State<LocationBasedWeather> {
                 await fetchDailyWeatherByCity(enteredCity);
               }
             },
-            child: const Text('Search'),
+            child: const Text(
+              'Search',
+              style: TextStyle(fontSize: 18),
+            ),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text('Cancel'),
+            child: const Text(
+              'Cancel',
+              style: TextStyle(
+                fontSize: 18, // Set your desired font size
+                color: Colors.red, // Set the text color to red
+              ),
+            ),
           ),
         ],
       ),
@@ -538,5 +541,3 @@ Container _buildInfoContainer(
 }
 
 getBackgroundColor() {}
-
-
