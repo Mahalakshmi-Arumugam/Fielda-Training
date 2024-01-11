@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather/UserInterface/locationBasedWeather.dart';
+import 'locationBasedWeather.dart';
 
 class GetStarted extends StatelessWidget {
   const GetStarted({Key? key}) : super(key: key);
