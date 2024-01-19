@@ -1,48 +1,26 @@
+import 'package:fielda_project/models/images_data.dart';
+import 'package:fielda_project/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fielda_project/models/button_style.dart';
 
 class CarouselPage extends StatefulWidget {
-  final List<Map<String, dynamic>> images = [
-   {
-      'path': 'assets/images/one.png',
-      'width': 300.0,
-      'height': 300.0,
-      'text1': 'Track your work',
-      'text2': 'Monitor, Track and Map field work\n Anywhere, Anytime'
-    },
-    {
-      'path': 'assets/images/second.png',
-      'width': 300.0,
-      'height': 300.0,
-      'text1': 'Add real-world detail',
-      'text2': 'No Paper Trails, Stay real-time,\n Stay mobile'
-    },
-    {
-      'path': 'assets/images/third.png',
-      'width': 300.0,
-      'height': 300.0,
-      'text1': 'Stay connected',
-      'text2': 'Leverage GIS for tracking\n your activity'
-    },
-  ];
-
-
-  CarouselPage({Key? key}) : super(key: key);
+  const CarouselPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CarouselPageState createState() => _CarouselPageState();
 }
 
 class _CarouselPageState extends State<CarouselPage> {
   int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
           CarouselSlider(
-            items: widget.images.map((imageData) {
+            items: ImageData.images.map((imageData) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
@@ -105,7 +83,7 @@ class _CarouselPageState extends State<CarouselPage> {
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: widget.images.asMap().entries.map((entry) {
+            children: ImageData.images.asMap().entries.map((entry) {
               return GestureDetector(
                 onTap: () {
                   setState(() {
@@ -128,16 +106,8 @@ class _CarouselPageState extends State<CarouselPage> {
           ),
           const SizedBox(height: 60),
           ElevatedButton(
-            onPressed: () {
-            },
-            style: ElevatedButton.styleFrom(
-              primary: Colors.white,
-              onPrimary: Colors.blue,
-              side: const BorderSide(color: Colors.blue, width: 2),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
+            onPressed: () {},
+            style: ButtonStyles.primaryButtonStyle,
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 10.0),
               child: Text(
@@ -151,15 +121,12 @@ class _CarouselPageState extends State<CarouselPage> {
           const SizedBox(height: 10),
           ElevatedButton(
             onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SignIn()),
+              );
             },
-            style: ElevatedButton.styleFrom(
-              primary: Colors.white,
-              onPrimary: Colors.blue,
-              side: const BorderSide(color: Colors.blue, width: 2),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
+            style: ButtonStyles.primaryButtonStyle,
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
               child: Text(
