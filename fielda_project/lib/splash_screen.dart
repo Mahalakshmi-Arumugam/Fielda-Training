@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
       const Duration(seconds: 3),
       () => Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => CarouselPage()),
+        MaterialPageRoute(builder: (context) => const CarouselPage()),
       ),
     );
 
