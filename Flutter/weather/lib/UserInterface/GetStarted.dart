@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'locationBasedWeather.dart';
 
@@ -30,24 +32,27 @@ class GetStarted extends StatelessWidget {
                 'Welcome!',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 36, 
-                  fontFamily: 'Noto Serif', 
-                  fontWeight: FontWeight.bold, 
+                  fontSize: 36,
+                  fontFamily: 'Noto Serif',
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 20),
-              Image.asset('assets/get-started.png'), 
+              Image.asset('assets/get-started.png'),
               const SizedBox(height: 30),
               GestureDetector(
                 onTap: () {
-                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LocationBasedWeather()));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LocationBasedWeather()));
                 },
                 child: Container(
                   height: 50,
                   width: size.width * 0.5,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
-                       colors: [
+                      colors: [
                         Color.fromRGBO(0, 160, 187, 1),
                         Color.fromRGBO(0, 188, 219, 0.90),
                       ],
@@ -58,7 +63,8 @@ class GetStarted extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                   child: const Center(
-                    child: Text('Get started', style: TextStyle(color: Colors.white, fontSize: 20)),
+                    child: Text('Get started',
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                 ),
               ),
