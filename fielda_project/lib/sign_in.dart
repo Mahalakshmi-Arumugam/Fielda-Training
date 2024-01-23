@@ -1,10 +1,10 @@
+import 'package:fielda_project/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _SignInState createState() => _SignInState();
 }
 
@@ -16,7 +16,9 @@ class _SignInState extends State<SignIn> {
   final TextEditingController _passwordController = TextEditingController();
 
   bool isEmailValid = false;
+  bool isPasswordValid = false;
   bool isPasswordVisible = false;
+  bool hasTriedToSignIn = false; // Added variable to track sign-in attempts
 
   @override
   void dispose() {
@@ -32,6 +34,17 @@ class _SignInState extends State<SignIn> {
 
     setState(() {
       isEmailValid = isValid;
+    });
+  }
+
+  void validatePassword(String password) {
+    bool isValid = password.length >= 8 &&
+        RegExp(r'[A-Z]').hasMatch(password) &&
+        RegExp(r'[0-9]').hasMatch(password) &&
+        RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(password);
+
+    setState(() {
+      isPasswordValid = isValid;
     });
   }
 
@@ -54,7 +67,7 @@ class _SignInState extends State<SignIn> {
               height: 40,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/fill3.png'), 
+                  image: AssetImage('assets/images/fill3.png'),
                   fit: BoxFit.contain,
                 ),
               ),
@@ -64,8 +77,8 @@ class _SignInState extends State<SignIn> {
             left: 0,
             top: 0,
             child: Container(
-              height: 300, 
-              width: 300,  
+              height: 300,
+              width: 300,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/images/logo2.png'),
@@ -76,6 +89,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
           SingleChildScrollView(
+            padding: EdgeInsets.only(top: 20.0), // Add top padding
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -154,8 +168,12 @@ class _SignInState extends State<SignIn> {
                             focusNode: _passwordFocusNode,
                             controller: _passwordController,
                             obscureText: !isPasswordVisible,
+                            onChanged: validatePassword,
                             decoration: InputDecoration(
                               labelText: 'Password',
+                              errorText: hasTriedToSignIn && !isPasswordValid
+                                  ? 'Password must be at least 8 characters'
+                                  : null,
                               suffix: GestureDetector(
                                 onTap: togglePasswordVisibility,
                                 child: Text(
@@ -169,20 +187,33 @@ class _SignInState extends State<SignIn> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20.0),
+                      const SizedBox(height: 40.0),
                     ],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 40.0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        hasTriedToSignIn = true;
+                      });
+
+                      if (isEmailValid &&
+                          _passwordController.text.length >= 8) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ProfilePage(),
+                          ),
+                        );
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: const Color.fromARGB(255, 222, 220, 220),
-                      backgroundColor:
-                          isEmailValid && _passwordController.text.isNotEmpty
-                              ? Colors.blue
-                              : const Color.fromARGB(255, 198, 195, 195),
+                      backgroundColor: _passwordController.text.length >= 8
+                          ? Colors.blue
+                          : const Color.fromARGB(255, 198, 195, 195),
                       side: const BorderSide(
                         color: Color.fromARGB(255, 184, 181, 181),
                         width: 1,
@@ -200,7 +231,12 @@ class _SignInState extends State<SignIn> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20.0),
+                const SizedBox(
+                    height: 30.0), 
+
+                const SizedBox(
+                    height: 30.0), 
+
                 const Padding(
                   padding: EdgeInsets.only(left: 115.0),
                   child: Text(

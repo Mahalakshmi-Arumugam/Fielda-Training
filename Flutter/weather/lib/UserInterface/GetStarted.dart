@@ -1,10 +1,22 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'locationBasedWeather.dart';
+import 'package:permission_handler/permission_handler.dart';
+//import 'locationBasedWeather.dart';
 
 class GetStarted extends StatelessWidget {
   const GetStarted({Key? key}) : super(key: key);
+
+
+Future<void> myFunction() async {
+   var status = await Permission.location.status;
+   if(status.isGranted){
+
+   }
+   else if(status.isDenied){
+    
+   }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +54,7 @@ class GetStarted extends StatelessWidget {
               const SizedBox(height: 30),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LocationBasedWeather()));
+                myFunction();
                 },
                 child: Container(
                   height: 50,

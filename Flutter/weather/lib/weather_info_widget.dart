@@ -133,5 +133,14 @@ class WeatherInfoWidget extends StatelessWidget {
     );
   }
 
-  getBackgroundColor() {}
+  Color getBackgroundColor() {
+    DateTime now = DateTime.now();
+    int currentHour = now.hour;
+
+    if (currentHour >= 12) {
+      return Colors.purple.withOpacity(0.8);
+    } else {
+      return const Color.fromRGBO(17, 103, 215, 0.8);
+    }
+  }
 }

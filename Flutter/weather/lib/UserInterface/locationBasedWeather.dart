@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:geolocator/geolocator.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:weather/search_dialog.dart';
 import 'package:weather/weather_api.dart';
 import 'package:weather/weather_info_widget.dart';
@@ -46,7 +47,10 @@ class _LocationBasedWeatherState extends State<LocationBasedWeather> {
     super.initState();
     getLocationAndFetchWeather();
     fetchCurrentDate();
+   
   }
+
+  
 
   void getLocationAndFetchWeather() async {
     try {
