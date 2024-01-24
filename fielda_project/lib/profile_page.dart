@@ -89,13 +89,26 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20.0),
-            const CircularProgressIndicator(),
-            const SizedBox(height: 10.0), 
-            const Text(
-              'Loading...',
-              style: TextStyle(
-                fontSize: 16.0,
-                color: Colors.grey,
+            const SizedBox(
+              width: 350.0,
+              child: Card(
+                elevation: 3.0,
+                child: Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      SizedBox(height: 10.0),
+                      Text(
+                        'Loading...',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],

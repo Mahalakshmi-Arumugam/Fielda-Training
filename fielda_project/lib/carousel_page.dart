@@ -8,6 +8,7 @@ class CarouselPage extends StatefulWidget {
   const CarouselPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CarouselPageState createState() => _CarouselPageState();
 }
 
@@ -29,10 +30,10 @@ class _CarouselPageState extends State<CarouselPage> {
                   return Builder(
                     builder: (BuildContext context) {
                       return Container(
-                        height: 500.0,
+                        height: 700.0,
                         width: MediaQuery.of(context).size.width,
                         margin: const EdgeInsets.only(
-                            top: 40.0, bottom: 20.0),
+                            top: 60.0, bottom: 20.0),
                         decoration: const BoxDecoration(
                           color: Colors.white,
                         ),
@@ -86,7 +87,7 @@ class _CarouselPageState extends State<CarouselPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: ImageData.images.asMap().entries.map((entry) {
