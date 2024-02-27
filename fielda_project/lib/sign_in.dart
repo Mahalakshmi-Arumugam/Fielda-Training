@@ -1,7 +1,6 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:fielda_project/profile_page.dart';
+import 'reset_password.dart'; 
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -26,7 +25,7 @@ class _SignInState extends State<SignIn> {
     bool isValid = RegExp(r'^.+@.+$').hasMatch(email);
 
     setState(() {
-      isEmailValid = isValid;
+      isEmailValid = isValid || email.isEmpty;
     });
   }
 
@@ -38,7 +37,7 @@ class _SignInState extends State<SignIn> {
         RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(password);
 
     setState(() {
-      isPasswordValid = isValid;
+      isPasswordValid = isValid || password.isEmpty;
     });
   }
 
@@ -121,10 +120,7 @@ class _SignInState extends State<SignIn> {
                     padding: EdgeInsets.only(left: 30.0),
                     child: Text(
                       'Sign In to explore Fielda',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        color: Colors.grey,
-                      ),
+                      style: TextStyle(fontSize: 15.0, color: Colors.black),
                     ),
                   ),
                   const SizedBox(height: 30.0),
@@ -142,16 +138,32 @@ class _SignInState extends State<SignIn> {
                               onChanged: validateEmail,
                               decoration: InputDecoration(
                                 labelText: 'Email',
-                                suffixIcon: isEmailValid
-                                    ? const Icon(
-                                        Icons.check_circle,
-                                        color: Colors.green,
-                                      )
+                                suffixIcon: _emailController.text.isNotEmpty
+                                    ? (isEmailValid
+                                        ? const Icon(
+                                            Icons.check_circle,
+                                            color: Colors.green,
+                                          )
+                                        : const Icon(
+                                            Icons.error,
+                                            color: Colors.red,
+                                          ))
                                     : null,
                               ),
                             ),
                           ),
                         ),
+                        if (!isEmailValid && _emailController.text.isNotEmpty)
+                          const Padding(
+                            padding: EdgeInsets.only(right: 40.0, top: 8.0),
+                            child: Text(
+                              'Please enter a valid email address.',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 13.0,
+                              ),
+                            ),
+                          ),
                         const SizedBox(height: 20.0),
                       ],
                     ),
@@ -180,7 +192,7 @@ class _SignInState extends State<SignIn> {
                                   child: Text(
                                     isPasswordVisible ? 'Hide' : 'Show',
                                     style: const TextStyle(
-                                      color: Colors.grey,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ),
@@ -188,12 +200,23 @@ class _SignInState extends State<SignIn> {
                             ),
                           ),
                         ),
+                        if (!isPasswordValid &&
+                            _passwordController.text.isNotEmpty)
+                          const Padding(
+                            padding: EdgeInsets.only(right: 40.0, top: 8.0),
+                            child: Text(
+                              'Please enter a valid password.',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 13.0,
+                              ),
+                            ),
+                          ),
                         const SizedBox(height: 40.0),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 40.0),
+                  Center(
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -212,18 +235,21 @@ class _SignInState extends State<SignIn> {
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor:
-                            const Color.fromARGB(255, 222, 220, 220),
-                        backgroundColor: _passwordController.text.length >= 8
+                            const Color.fromARGB(148, 184, 181, 181),
+                        backgroundColor: (isEmailValid &&
+                                _passwordController.text.length >= 8)
                             ? Colors.blue
-                            : const Color.fromARGB(255, 198, 195, 195),
+                            : const Color.fromARGB(148, 184, 181, 181),
+                        disabledBackgroundColor:
+                            const Color.fromARGB(148, 184, 181, 181), 
                         side: const BorderSide(
-                          color: Color.fromARGB(255, 184, 181, 181),
+                          color: Color.fromARGB(148, 184, 181, 181),
                           width: 1,
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        minimumSize: const Size(300.0, 45.0),
+                        minimumSize: const Size(150.0, 45.0),
                       ),
                       child: const Text(
                         'Sign In',
@@ -233,23 +259,32 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 30.0),
-                  const SizedBox(height: 30.0),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 115.0),
-                    child: Text(
-                      'Forgot your password?',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14.0,
+                  const SizedBox(height: 20.0),
+                  Center(
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ResetPassword(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Forgot your password?',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14.0,
+                        ),
                       ),
                     ),
                   ),
                   const SizedBox(height: 30.0),
+                  const SizedBox(height: 30.0),
                   Container(
                     width: double.infinity,
                     height: 40,
-                    color: const Color.fromARGB(211, 86, 233, 218),
+                   color: Color(0xFF95E5D8),
                     child: const Row(
                       children: [
                         Padding(
@@ -257,7 +292,7 @@ class _SignInState extends State<SignIn> {
                           child: Text(
                             'New to Fielda?',
                             style: TextStyle(
-                              color: Colors.grey,
+                              color: Colors.black,
                               fontSize: 18.0,
                             ),
                           ),

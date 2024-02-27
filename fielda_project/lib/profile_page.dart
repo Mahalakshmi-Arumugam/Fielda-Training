@@ -1,16 +1,68 @@
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  bool _isDrawerOpen = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.settings),
-          onPressed: () {},
-          padding: const EdgeInsets.only(top: 30.0),
+          icon: const Icon(
+            Icons.menu,
+            size: 35,
+            color: Color.fromARGB(230, 51, 93, 234),
+          ),
+          onPressed: () {
+            setState(() {
+              _isDrawerOpen = !_isDrawerOpen;
+            });
+          },
+          padding: const EdgeInsets.only(top: 10.0),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.help,
+              size: 30,
+              color: Color.fromARGB(230, 51, 93, 234),
+            ),
+            onPressed: () {},
+            padding: const EdgeInsets.only(top: 15.0, right: 10.0),
+          ),
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue, // Customize drawer header color
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: Text('Sidebar Item 1'),
+              onTap: () {
+                // Handle item tap
+              },
+            ),
+            ListTile(
+              title: Text('Sidebar Item 2'),
+              onTap: () {
+                // Handle item tap
+              },
+            ),
+            // Add more items as needed
+          ],
         ),
       ),
       body: Center(
@@ -21,22 +73,22 @@ class ProfilePage extends StatelessWidget {
             Stack(
               children: [
                 const CircleAvatar(
-                  radius: 50.0,
+                  radius: 60.0,
                   backgroundImage: AssetImage('assets/images/profile.png'),
                 ),
                 Positioned(
                   bottom: 0,
-                  right: 0,
+                  right: 12,
                   child: Container(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(8.0),
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Color.fromARGB(255, 33, 201, 243),
+                      color: Colors.white,
                     ),
                     child: const Icon(
-                      Icons.edit,
-                      color: Colors.white,
-                      size: 20.0,
+                      Icons.camera_alt_outlined,
+                      color: Color.fromARGB(230, 51, 93, 234),
+                      size: 25.0,
                     ),
                   ),
                 ),
@@ -51,10 +103,10 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 15.0),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Align(
+                Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
                     padding: EdgeInsets.only(left: 20.0),
@@ -63,25 +115,6 @@ class ProfilePage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 20.0),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 33, 201, 243),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                    ),
-                    child: const Text(
-                      'New Project',
-                      style: TextStyle(
-                        fontSize: 17.0,
-                        color: Colors.white,
                       ),
                     ),
                   ),

@@ -1,14 +1,12 @@
 import 'dart:async';
-import 'package:fielda_project/carousel_page.dart';
 import 'package:flutter/material.dart';
+import 'package:fielda_project/carousel_page.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     Timer(
-      const Duration(seconds: 3),
+      const Duration(seconds: 5),
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const CarouselPage()),
@@ -18,15 +16,13 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 100.0,
-              height: 100.0,
-              child: Image.asset('assets/images/logo.png'),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10.0),
+          child: SizedBox(
+            width: 350.0,
+            height: 350.0,
+            child: Image.asset('assets/images/fielda.png'),
+          ),
         ),
       ),
     );

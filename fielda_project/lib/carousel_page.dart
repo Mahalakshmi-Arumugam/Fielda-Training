@@ -15,6 +15,11 @@ class CarouselPage extends StatefulWidget {
 class _CarouselPageState extends State<CarouselPage> {
   int _currentIndex = 0;
 
+   @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

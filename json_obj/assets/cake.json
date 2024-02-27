@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "cake name": "Black forest",
+    "Actual price": 500.78,
+    "price": 323.50,
+    "quantity": "1kg"
+  },
+  {
+    "id": 2,
+    "cake name": "Red Velvet",
+    "Actual price": 450.00,
+    "price": 299.99,
+    "quantity": "1kg"
+  },
+  {
+    "id": 3,
+    "cake name": "Chocolate Truffle",
+    "Actual price": 550.25,
+    "price": 375.00,
+    "quantity": "1kg"
+  }
+]
